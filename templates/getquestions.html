@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %} Online Stores | Signup here {% endblock %}
+{% block header %}
+<h3 class="text-center"></h3>
+{% endblock %}
+{% block content %}
+{% load static %}
+<div class="container mt-2 mb-2">
+    <div class="row">
+        <div class="col-10 mx-auto border rounded mt-5">
+            <div class="mt-3 pt-3 ">
+                <h4 class="alert alert-light border rounded text-center"> Online Test App !</h4>
+                {% if messages %}
+                {% for message in messages %}
+                <p class="alert alert-success">{{message}}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <form method="post" action="/getanswer/">
+                {% csrf_token %}
+                <div class="form-group">
+                    {% for question in questions %}
+                    <div class="card text-center">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-justify"><span
+                                class="mx-3 badge badge-info border rounded">{{forloop.counter}}</span>{{question.name}}
+                        </h5>
+                        <div class="mx-4">
+                            <span class="font-weight-bold badge badge-danger">A</span>
+                            <input type="radio" value="A" name="{{question.id}}"> <label for="">{{question.option_A}}</label><br>
+                            <span class="font-weight-bold badge badge-danger">B</span>
+                            <input type="radio" value="B" name="{{question.id}}"> <label for="">{{question.option_B}}</label><br>
+                            <span class="font-weight-bold badge badge-danger">C</span>
+                            <input type="radio" value="C" name="{{question.id}}"> <label for="">{{question.option_C}}</label><br>
+                            <span class="font-weight-bold badge badge-danger">D</span>
+                            <input type="radio" value="D" name="{{question.id}}"> <label for="">{{question.option_D}}</label><br>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <input type="submit" class="btn col-12 my-2 btn-outline-danger" value="Submit">
+                </div>
+            </form>
+
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}
